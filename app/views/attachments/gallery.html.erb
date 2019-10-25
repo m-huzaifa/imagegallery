@@ -1,0 +1,18 @@
+
+
+<h1> Gallery </h1>
+<p> <%= link_to 'back', url_for(:back) %> </p>
+
+<hr>
+
+
+    <% @attachments.each do |attachment| %>
+    	<% if attachment.image? %>
+        
+            	<%= link_to( image_tag(attachment.image.thumb.url, alt: "image"), attachment ) if attachment.image? %>
+		      
+	      
+	      <% end %>
+    <% end %>
+  
+

@@ -1,0 +1,15 @@
+<td> <%= user.id %></td>
+<td colspan="3"></td>
+<td><%= user.email %></td>
+<td colspan="3"></td>
+<td> <%= user.username %></td>
+<td colspan="3"></td>
+<td> 
+	<% user.roles.each do |role| %>
+		<%= role.name %>
+	<% end %>
+</td>
+<td colspan="3"></td>
+<td> <%= link_to 'show', user %> | 
+	<%= link_to 'edit', edit_user_registration_path %>
+</td>

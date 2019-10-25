@@ -1,0 +1,31 @@
+<h1> Order form </h1>
+
+<% if @attachment.amount > 0 %>
+	<p><%= image_tag @attachment.image.thumb.url %></p>
+
+		<%= form_for :orders, url: '/orders/' do |f| %>
+			<p>
+				<%= f.label "Name"%>
+				<%= f.text_field :name %>
+			</p>
+		<br>
+		<p>
+				<%= f.label "Enter Amount"%>
+				<%= f.text_field :amount %>
+			</p>
+			<br>
+			<p>
+				<%= hidden_field_tag "attachment_amount", @attachment.amount %>
+				<%= hidden_field_tag "attachment_id", @attachment.id %>
+			</p>
+			<br>
+		<p>
+			<%= f.submit "create order" %>
+		</p>
+
+		<% end %>
+<% else %>
+		<p> sorry, out of stock, come back later </p>
+<% end %>
+
+<p> <%= link_to 'back', url_for(:back) %></p>

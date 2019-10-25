@@ -1,0 +1,51 @@
+
+<h1> My Gallery </h1>
+
+<p>
+  <strong> User Name : </strong> <%= current_user.username %>
+</p>
+
+<% if current_user.attachments.any? %>
+  <p>
+    <%= link_to "Show Gallery", gallery_path(@attachments.first.id) %>
+  </p>
+<% end %>
+<hr>
+
+<h2> All Images </h2>
+
+<%= link_to 'Add New Attachment', new_attachment_path %>
+
+<P>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Amount</th>
+      <th>Image</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attachments.each do |attachment| %>
+        <tr>
+  		    <td>
+			     <%= attachment.title %>
+		      </td>
+          <td> <%= attachment.amount %>
+          </td>
+		     <td>
+            <%= link_to( image_tag(attachment.image.small_thumb.url, alt: "image"), attachment.image.url, target: " ") if attachment.image? %>
+		     </td>
+         <td>
+          <%= link_to 'Show', attachment %> |
+          <%= link_to 'Edit', edit_attachment_path(attachment) %> | 
+          <%= link_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+	      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</P>

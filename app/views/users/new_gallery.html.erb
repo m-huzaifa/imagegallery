@@ -1,0 +1,50 @@
+<h1>Create Gallery</h1>
+<p><strong> User Name:</strong> <%= @user.username if @user.username? %> </p>
+
+<p> Total Attachments: <%= @user.attachments.count %> </p>
+ 
+<% if current_user.attachments.any? %>
+  <p>
+    <%= link_to "Show Gallery", gallery_path(current_user.attachments.ids) %>
+  </p>
+<% end %>
+
+<hr>
+ <h2> Add New Attachments </h2>
+<p>
+<%= nested_form_for @user, url: { action: "create_gallery" } do |f| %>
+	<%= f.fields_for :attachments, Attachment.new do |f| %>
+		<p>
+			<%= render "attachments/create_attachment", f: f %>
+		</p>
+	<% end %>
+		<p><%= f.link_to_add "Add new Attaachment", :attachments %></p>
+		<br>
+		<p>
+			<%= f.submit " Add attachments " %>
+		</p>
+<% end %>
+
+</p>
+
+<hr>
+
+
+<h2> Your Attachments </h2>
+<table>
+	<thead>
+		<tr>
+			<th>
+				Title
+			</th>
+			<th>
+				Image
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render @user.attachments %>
+	</tbody>
+</table>
+
+

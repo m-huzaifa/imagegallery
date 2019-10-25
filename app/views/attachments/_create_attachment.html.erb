@@ -1,0 +1,44 @@
+
+<p>
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+</p>
+
+<p>
+ 	<%= f.label :description %>
+ 	<%= f.text_field :description %>
+</p>
+
+<p>
+ 	<%= f.label :image_type %>
+ 	<%= f.text_field :image_type %>
+</p>
+
+<p>
+ 	<%= f.label :place %>
+ 	<%= f.text_field :place %>
+</p>
+
+<p>
+ 	<%= f.label :created_by %>
+ 	<%= f.text_field :created_by %>
+</p>
+
+<p>
+ 	<%= f.label :price %>
+ 	<%= f.text_field :price %>
+</p>
+<br>
+<p>
+ 	<%= f.label :image %>
+ 	<p> 
+ 		<%= f.file_field :image %>
+ 		<%= f.hidden_field :image_cache %>
+ 		<br><br>
+ 		<%= label_tag "Enter Url of Image" %>
+ 		<%= f.text_field :remote_image_url %>
+ 	</p>
+ 	<br>
+</p>
+
+

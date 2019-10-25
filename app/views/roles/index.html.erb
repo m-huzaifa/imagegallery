@@ -1,0 +1,10 @@
+
+<h1> Roles </h1>
+<% @roles.each do |role| %>
+<P> <%= role.name %> | 
+	<td><%= link_to 'Destroy role', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</P>
+
+<% end %>
+
+<%= link_to 'add role', new_role_path %>

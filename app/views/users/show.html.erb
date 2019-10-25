@@ -1,0 +1,7 @@
+<h3>User</h3>
+<p><strong> Email: </strong> <%= @user.email if @user.email %></p>
+<p><strong> User Name: </strong> <%= @user.username %></p>
+
+<p>
+	<%= link_to 'edit profile', edit_user_registration_path %>
+</p>
