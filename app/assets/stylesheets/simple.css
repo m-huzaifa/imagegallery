@@ -2,31 +2,40 @@
  * Simple CSS stylesheet for a navigation bar and flash messages.
  */
 main {
-  background-color: #eee;
+  background-color: #EBEBEB;
   padding-bottom: 80px;
   padding-top: 40px;
   padding-right: 40px;
   padding-left: 40px;
-
+  margin-left: 15px;
+  margin-right: 15px;
+  height: 100%;
   }
 header {
-  border: 1px solid #d4d4d4;
-  background-image: linear-gradient(to bottom, white, #f2f2f2);
-  background-color: #f9f9f9;
-  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: white;
+  font-family: 'icomoon';
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 ul.nav li {
   display: inline;
 }
 ul.nav li a {
   padding: 10px 15px 10px;
-  color: #777777;
+  color: black;
   text-decoration: none;
-  text-shadow: 0 1px 0 white;
+  text-shadow: 0 0px 0 white;
+  align-items: center;
+  &:hover {
+    color: red;
+    background-color: #cccac7;
+  }
 }
 .flash_notice, .flash_alert {
   padding: 8px 35px 8px 14px;
@@ -50,6 +59,3 @@ ul.nav li a {
   border-color: #eed3d7;
   color: #b94a48;
 }
-
-
-

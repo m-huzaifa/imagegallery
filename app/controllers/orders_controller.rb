@@ -17,9 +17,9 @@ class OrdersController < ApplicationController
 		@attachment = Attachment.find_by_id(@attachment_id)
 
 		if @amount == 0
-			redirect_back fallback_location: all_attachments_path, notice: "Enter some amount to order."
+			redirect_back fallback_location: all_attachments_path, alert: "Enter some amount to order."
 		elsif @attachment_amount < @amount
-			redirect_back fallback_location: all_attachments_path, notice: "Given amount not available. max amount available for this attachment: #{@attachment_amount}"
+			redirect_back fallback_location: all_attachments_path, alert: "Given amount not available. max amount available for this attachment: #{@attachment_amount}"
 	#		redirect_to all_attachments_path, notice: "Given amount not available. max amount available for this attachment: #{@attachment_amount}"
 		else
 			@attachment_amount = @attachment_amount - @amount

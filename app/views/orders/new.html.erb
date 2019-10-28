@@ -1,31 +1,35 @@
-<h1> Order form </h1>
-
-<% if @attachment.amount > 0 %>
-	<p><%= image_tag @attachment.image.thumb.url %></p>
-
-		<%= form_for :orders, url: '/orders/' do |f| %>
-			<p>
-				<%= f.label "Name"%>
-				<%= f.text_field :name %>
-			</p>
-		<br>
-		<p>
-				<%= f.label "Enter Amount"%>
-				<%= f.text_field :amount %>
-			</p>
-			<br>
-			<p>
-				<%= hidden_field_tag "attachment_amount", @attachment.amount %>
-				<%= hidden_field_tag "attachment_id", @attachment.id %>
-			</p>
-			<br>
-		<p>
-			<%= f.submit "create order" %>
-		</p>
-
+<div class="container">
+	<h1 class="text-center"> Order form </h1>
+	<hr>
+	<div class="row">
+		<% if @attachment.amount > 0 %>
+			<div class="col-md-3">
+				<%= image_tag @attachment.image.thumb.url %>
+			</div>
+			<div class="col-md-9">
+				<%= form_for :orders, url: '/orders/' do |f| %>
+					<div class="form-group">
+						<%= f.label "Name"%>
+						<%= f.text_field :name, class: "form-control" %>
+					</div>
+					<div class="form-group">
+						<%= f.label :amount, "Enter Amount"%>
+						<%= f.text_field :amount, class: "form-control" %>
+					</div>
+					<div class="form-group">
+						<%= f.submit "create order", class: "btn btn-primary" %>
+					</div>
+					<div>
+						<%= hidden_field_tag "attachment_amount", @attachment.amount %>
+						<%= hidden_field_tag "attachment_id", @attachment.id %>
+					</div>
+				<% end %>
+			</div>	
+		<% else %>
+			<div class="alert alert-warning"> sorry, out of stock, come back later </div>
 		<% end %>
-<% else %>
-		<p> sorry, out of stock, come back later </p>
-<% end %>
-
-<p> <%= link_to 'back', url_for(:back) %></p>
+	</div>
+<div>
+		<%= link_to 'back', url_for(:back), class: "back-btn" %>
+	</div>
+</div>

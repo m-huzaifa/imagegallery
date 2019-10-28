@@ -1,51 +1,50 @@
 
-<h1> My Gallery </h1>
+<div class="container">
 
-<p>
-  <strong> User Name : </strong> <%= current_user.username %>
-</p>
-
-<% if current_user.attachments.any? %>
+  <h1> My Gallery </h1>
   <p>
-    <%= link_to "Show Gallery", gallery_path(@attachments.first.id) %>
+    <strong> User Name : </strong> <%= current_user.username %>
   </p>
-<% end %>
-<hr>
 
-<h2> All Images </h2>
-
-<%= link_to 'Add New Attachment', new_attachment_path %>
-
-<P>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Amount</th>
-      <th>Image</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @attachments.each do |attachment| %>
-        <tr>
-  		    <td>
-			     <%= attachment.title %>
-		      </td>
-          <td> <%= attachment.amount %>
-          </td>
-		     <td>
-            <%= link_to( image_tag(attachment.image.small_thumb.url, alt: "image"), attachment.image.url, target: " ") if attachment.image? %>
-		     </td>
-         <td>
-          <%= link_to 'Show', attachment %> |
-          <%= link_to 'Edit', edit_attachment_path(attachment) %> | 
-          <%= link_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </td>
-	      </tr>
+  <p>
+    <% if current_user.attachments.any? %>
+      <%= link_to "Show My Gallery", gallery_path(@attachments.first.id), class: 'btn btn-info' %>
     <% end %>
-  </tbody>
-</table>
+  </p>
 
+  <hr>
+
+  <h2> All Images </h2>
+
+  <br>
+  
+  <div class="row">
+      <div class="col-md-2"><Strong>Title</Strong></div>
+      <div class="col-md-2"><Strong>Amount</Strong></div>
+      <div class="col-md-2"><Strong>Image</Strong></div>
+      <div class="col-md-3"><Strong>Actions</Strong></div>   
+      <div class="col-md-3"><%= link_to 'Create Gallery', user_new_gallery_path(current_user), class: 'btn btn-primary' %></div>
+  </div>
+  <hr>
+  <div class="row">
+    <% @attachments.each do |attachment| %>
+        
+  		    <div class="col-md-2">
+			     <%= attachment.title %>
+		      </div>
+          <div class="col-md-2">
+            <%= attachment.amount %>
+          </div>
+		      <div class="col-md-2 mb-1">
+            <%= link_to( image_tag(attachment.image.small_thumb.url, alt: "image"), attachment.image.url, target: " ") if attachment.image? %>
+		      </div>
+          <div class="col-md-6">
+            <%= link_to 'Show', attachment, class: 'btn btn-success' %>
+            <%= link_to 'Edit', edit_attachment_path(attachment), class: 'btn btn-info' %> 
+            <%= link_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </div>
+	      
+    <% end %>
+  </div>
+</div>
 </P>

@@ -27,7 +27,7 @@ class Ability
          can :show, User, id: user.id
 
        else
-        alias_action :all_attachments, :show, :gallery, to: :read
+        alias_action :all_attachments, :show, to: :read
         can :read, Attachment
        end
     #

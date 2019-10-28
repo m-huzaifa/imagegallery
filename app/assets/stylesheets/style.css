@@ -1,6 +1,6 @@
 body {
-  background-color: #fff;
-  color: #33;
+  background-color: #eee;
+  color: black;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -8,7 +8,6 @@ body {
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
   font-size: 15px;
   line-height: 18px;
   margin: 33px;
@@ -22,14 +21,11 @@ pre {
 
 a {
   color: #000;
-
-  &:visited {
-    color: #666;
-  }
+  text-decoration: none;
 
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: white;
+    background-color: black;
   }
 }
 
@@ -90,4 +86,55 @@ label {
 
 .navbar-right {
   text-align: right;
+}
+
+
+.a-primary{
+  color: black;
+}
+
+.btn-image{
+  color: white;
+  border: 2px solid white;
+  font-size: 10px;
+  padding: 2px 12px;
+
+
+}
+.btn-image:hover {
+  background-color: white;
+  color: black;
+
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.image-text{
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
+
+.back-btn {
+  color: white;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #555555;
+  border-radius: 4px;
+}
+
+.back-btn:hover {
+  background-color: #555555;
+  color: white;
 }

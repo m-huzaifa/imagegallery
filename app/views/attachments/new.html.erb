@@ -1,5 +1,7 @@
-<h1> Add New Image </h1>
+<h1> Add New Attachment </h1>
 
-<%= render partial: 'form', locals: { attachment: @attachment } %>
-
-<p><%= link_to 'Back', attachments_path %></p>
+<div class="authform">
+	<%= render partial: 'form', locals: { attachment: @attachment } %>
+</div>
+<br>
+<div><%= link_to 'Back', attachments_path, class: 'back-btn' %></div>

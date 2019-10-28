@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, {role_ids: []}, attachments_attributes: [:id, :title, :image_type, :description, :price, :created_by, :place, :user_id, :image_cache, :remote_image_url, :image, :images_cache, :remove_image])
+    params.require(:user).permit(:username, :email, {role_ids: []}, attachments_attributes: [:id, :title, :image_type, :description, :price, :created_by, :place, :user_id, :image_cache, :remote_image_url, :image, :images_cache, :remove_image, :amount])
   end
 
 

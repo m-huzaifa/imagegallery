@@ -32,9 +32,9 @@ before_filter :authenticate_user!, except: [:all_attachments, :show]
 		respond_to do |format|
       	if @attachment.save
         # TODO: Move hardcode flash message into language file
-        	format.html { redirect_to user_create_gallery_path(current_user), notice: 'Attachment was successfully added.'}
+        	format.html { redirect_to attachment_path(@attachment), notice: 'Attachment was successfully added.'}
       	else
-        	format.html { redirect_to user_create_gallery_path(current_user), alert: 'Attachments could not be added.' }
+        	format.html { render :new, alert: 'Attachments could not be added.' }
       	end
     	end
 	end
@@ -59,7 +59,7 @@ before_filter :authenticate_user!, except: [:all_attachments, :show]
 	end
 
 	private def attachment_params
-		params.require(:attachment).permit(:title, :image_type, :description, :price, :created_by, :place, :user_id, :image_cache, :remote_image_url, :image, :images_cache, :remove_image)
+		params.require(:attachment).permit(:title, :image_type, :description, :price, :created_by, :place, :user_id, :image_cache, :remote_image_url, :image, :images_cache, :remove_image, :amount)
 	end
 
 

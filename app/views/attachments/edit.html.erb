@@ -1,9 +1,7 @@
 <h1> Edit Attachment </h1>
-
-<%= render partial: 'form', locals: { attachment: @attachment } %>
-
-
-<p>
-	<%= link_to 'show', attachment_path(@attachment) %> |
-	<%= link_to 'Back', url_for(:back) %>
-</p>
+<div class="authform"><%= render partial: 'form', locals: { attachment: @attachment } %></div>
+<br>
+<div>
+	<%= link_to 'show', attachment_path(@attachment), class: 'btn btn-info' %>
+	<%= link_to 'Back', url_for(:back), class: 'back-btn' %>
+</div>

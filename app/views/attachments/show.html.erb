@@ -1,54 +1,68 @@
 
-
-<h1> Attachment Showing </h1>
-<% if @attachment.amount < 1 %>
-  <p><strong> Out of Stock now </strong></p>
-<% end %>
-
-
-<p>
-  <% if @attachment.image? %>
-    <%= image_tag(@attachment.image.thumb.url, alt: 'Image') %>   
+<div class="container">
+  <h1> Attachment Showing </h1>
+  <% if @attachment.amount < 1 %>
+    <div class="alert alert-warning"> Out of Stock now </div>
   <% end %>
-</p>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <div>
+        <% if @attachment.image? %>
+          <%= image_tag(@attachment.image.thumb.url, alt: 'Image') %>   
+        <% end %>
+      </div>
+      <br>
+      <div>
+        <%= link_to 'Show Image', @attachment.image.url, target: "_blank", class: 'btn btn-info' %>
+      </div>
+    </div>
+    <div class="col-sm-9">
 
-<p>
-  <strong>Title:</strong>
-  <%= @attachment.title %>
-</p>
+      <div>
+        <strong>Title:</strong>
+        <%= @attachment.title %>
+      </div>
+      <div>
+        <strong>Description:</strong>
+        <%= @attachment.description %>
+      </div>
+      <div>
+        <strong>type:</strong>
+        <%= @attachment.image_type %>
+      </div>
+      <div>
+        <strong>place:</strong>
+        <%= @attachment.place %>
+      </div>
+      <div>
+        <strong>Created By:</strong>
+        <%= @attachment.created_by %>
+      </div>
+      <div>
+        <strong>price:</strong>
+        <%= @attachment.price %>
+      </div>
+      <div>
+        <% if user_signed_in? && current_user.id == @attachment.user_id %>
+        <strong>Amount:</strong>
+        <%= @attachment.amount %>
+        <% end %>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-1">
+          <%= link_to 'Back', url_for(:back), class: 'back-btn' %>
+        </div>
+        <div class="col-md-1" >
+          <% if @attachment.amount > 0 %>
+            <%= link_to 'Buy', new_order_path(attachment: @attachment.id), class: 'btn btn-info' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @attachment.description %>
-</p>
+</div>
 
-<p>
-  <strong>type:</strong>
-  <%= @attachment.image_type %>
-</p>
-
-<p>
-  <strong>place:</strong>
-  <%= @attachment.place %>
-</p>
-
-<p>
-  <strong>Created By:</strong>
-  <%= @attachment.created_by %>
-</p>
-
-<p>
-  <strong>price:</strong>
-  <%= @attachment.price %>
-</p>
-
-<% if @attachment.amount > 0 %>
-
-  <p> <%= link_to 'buy', new_order_path(attachment: @attachment.id) %></p>
-<% end %>
-<p> <%= link_to 'back', url_for(:back) %></p>
-
-<% if user_signed_in? && current_user == @attachment.user_id %>
-<%= link_to 'Edit', edit_attachment_path(@attachment) %> |
-<% end %>
 
