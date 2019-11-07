@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
  
   get 'visitors/index'
+
   root to: 'visitors#index'
+  resources :visitors
   
- # devise_for :admin_users, ActiveAdmin::Devise.config
+    # devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
 
@@ -15,11 +17,16 @@ Rails.application.routes.draw do
     match "", to: "users#create_gallery", via: :patch
   end
 
-  resources :attachments
+  resources :attachments do
+    member do
+      post 'like'
+      post 'dislike'
+    end
+  end
   get "all_attachments", to: "attachments#all_attachments"
-  get "/:id/gallery", to: "attachments#gallery", as: "gallery"
+  get "/:id/show_gallery", to: "attachments#show_gallery", as: "gallery"
   resources :roles
   resources :orders
-  post "orders/orders/new", to: "orders#create"
+  get "/orders/confirm_order", to: "orders#confirm_order"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

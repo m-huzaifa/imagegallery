@@ -17,3 +17,7 @@
 //= require jquery.swipebox.js
 //= require attachments.js
 //= require bootstrap
+
+$("div").on( "click", "button", function( event ) {
+  $(event.delegateTarget ).css( "background-color", "green");
+});

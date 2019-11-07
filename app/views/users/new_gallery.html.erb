@@ -12,8 +12,7 @@
 		<h2> Your Attachments </h2>
 		<hr>
 
-		<div class="row">
-		
+		<div class="row text-center">
 			<div class="col-md-2">
 				<Strong> Title </Strong>
 			</div>
@@ -23,30 +22,28 @@
 			<div class="col-md-3">
 				<Strong> Image </Strong>
 			</div>
-		
 		</div>
-		<div class="row">
-			<%= render @user.attachments %>
-		</div>
+		<%= render @user.attachments %>
 
 	</div>
 
 	<div class="col-md-6">
-		<div class=" border border-dark p-4">
+		<div class=" border border-dark p-4 nested-form">
 			<h2> Add New Attachments </h2>
 			<hr>
-			<%= nested_form_for @user, url: { action: "create_gallery" } do |f| %>
+			<%= nested_form_for @user do |f| %>
 				<%= f.fields_for :attachments, Attachment.new do |f| %>
 					<div>
 						<%= render "attachments/create_attachment", f: f %>
 						<hr>
 					</div>
 				<% end %>
-				<div><%= f.link_to_add "Add new Attachment", :attachments %></div>
-				<br>
-				<p>
-					<%= f.submit " Add attachments " , class: "btn btn-primary"%>
-				</p>
+				<div>
+					<%= f.link_to_add "Add new Attachment", :attachments, class: "btn btn-info float-right" %>
+				</div>
+				<div>
+					<%= f.submit "Submit" , class: "btn btn-primary"%>
+				</div>
 			<% end %>
 		</div>
 	</div>

@@ -1,11 +1,27 @@
 
-<div class="container">
-	<h1>Welcome</h1>
-	<p>
-		<% if user_signed_in? %>
- 			<%= link_to 'Create your Gallery', user_new_gallery_path(current_user), class: 'btn btn-primary'%>
- 		<% else %>
- 			<% link_to 'Create Your Gallery', attachments_path, class: 'btn btn-primary' %>
- 			<% end %>
-	</p>
+
+
+
+
+<div>
+  <div class="row mb-1">
+    <% @users.each do |user| %>
+      <% if user.attachments.any? %>
+        <div class="col-md-4 text-center mb-2">
+          <div class="image-text">
+            <%= image_tag(user.attachments.last.image.large_thumb.url) %>
+            <div class="centered">
+              <strong>User Name: </strong>
+              <%= user.username %>
+              <br>
+              <br>
+              <%= link_to "Show Gallery" , gallery_path(user.attachments.ids), class: "btn-image" %>
+            </div>
+          </div>
+        </div>
+      <% end %>   
+    <% end %>
+  </div>
 </div>
+
+

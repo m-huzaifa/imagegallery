@@ -8,7 +8,7 @@ body {
 }
 
 p, ol, ul, td {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 18px;
   margin: 33px;
 }
@@ -96,9 +96,9 @@ label {
 .btn-image{
   color: white;
   border: 2px solid white;
-  font-size: 10px;
-  padding: 2px 12px;
-
+  font-size: 12px;
+  padding: 8px 15px;
+  border-radius: 2px;
 
 }
 .btn-image:hover {
@@ -118,8 +118,7 @@ label {
 .image-text{
   position: relative;
   text-align: center;
-  color: white;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .back-btn {
@@ -138,3 +137,17 @@ label {
   background-color: #555555;
   color: white;
 }
+
+.nested-form{
+  background-color: #EAECEE;
+}
+
+.like-btn{
+  color: white;
+  background-color: black;
+}
+.attach-bg{
+  background-color: white;
+}
+
+.hidden { display: none; }

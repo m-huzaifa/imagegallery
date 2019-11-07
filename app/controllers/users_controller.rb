@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
- load_and_authorize_resource
- before_filter :authenticate_user!
+ 
+  load_and_authorize_resource
+  before_filter :authenticate_user!
 
   def index
     @users = User.joins(:roles)
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def new_gallery
@@ -18,31 +19,16 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def create_gallery
     @user = current_user
-    @user = User.find(params[:user_id])
     respond_to do |format|
      if @user.update(user_params)
        # TODO: Move hardcode flash message into language file
-       format.html { redirect_to user_new_gallery_path(current_user), notice: 'Attachments was successfully updated.'}
+       format.html { redirect_to attachments_path, notice: 'Attachments was successfully updated.'}
+       format.js
      else
-       format.html { redirect_to user_new_gallery_path(current_user), alert: 'Attachments could not be added.'}
-      end
-    end
-  end
-
-  def update
-    @user = User.find(params[:id])
-    respond_to do |format|
-      if @user.update(user_params)
-        # TODO: Move hardcode flash message into language file
-        format.html { redirect_to @user, notice: 'user was successfully updated.'}
-      else
-        format.html { render :edit, alert: 'user could not be updated.'}
+       format.html { redirect_to attachments_path, alert: 'Attachments could not be added.'}
+       format.js
       end
     end
   end

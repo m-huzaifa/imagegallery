@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191024104640) do
+ActiveRecord::Schema.define(version: 20191106142941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,17 @@ ActiveRecord::Schema.define(version: 20191024104640) do
     t.integer  "user_id"
     t.integer  "amount",      default: 1, null: false
     t.index ["user_id"], name: "index_attachments_on_user_id", using: :btree
+  end
+
+  create_table "reactions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "attachment_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "status",        null: false
+    t.boolean  "reaction"
+    t.index ["attachment_id"], name: "index_reactions_on_attachment_id", using: :btree
+    t.index ["user_id"], name: "index_reactions_on_user_id", using: :btree
   end
 
   create_table "roles", force: :cascade do |t|

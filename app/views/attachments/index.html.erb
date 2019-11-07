@@ -1,50 +1,56 @@
-
-<div class="container">
-
-  <h1> My Gallery </h1>
-  <p>
-    <strong> User Name : </strong> <%= current_user.username %>
-  </p>
-
-  <p>
+<div class="text-center">
+  <h1>Create Gallery</h1>
+  <p><strong> User Name:</strong> <%= current_user.username if current_user.username? %> </p>
+  <p> Total Attachments: <%= current_user.attachments.count %> </p>
+   <p>
     <% if current_user.attachments.any? %>
-      <%= link_to "Show My Gallery", gallery_path(@attachments.first.id), class: 'btn btn-info' %>
-    <% end %>
+        <%= link_to "Show Gallery", gallery_path(current_user.attachments.ids), class: 'btn btn-info'%>
+      <% end %>
   </p>
-
-  <hr>
-
-  <h2> All Images </h2>
-
-  <br>
-  
-  <div class="row">
-      <div class="col-md-2"><Strong>Title</Strong></div>
-      <div class="col-md-2"><Strong>Amount</Strong></div>
-      <div class="col-md-2"><Strong>Image</Strong></div>
-      <div class="col-md-3"><Strong>Actions</Strong></div>   
-      <div class="col-md-3"><%= link_to 'Create Gallery', user_new_gallery_path(current_user), class: 'btn btn-primary' %></div>
-  </div>
-  <hr>
-  <div class="row">
-    <% @attachments.each do |attachment| %>
-        
-  		    <div class="col-md-2">
-			     <%= attachment.title %>
-		      </div>
-          <div class="col-md-2">
-            <%= attachment.amount %>
-          </div>
-		      <div class="col-md-2 mb-1">
-            <%= link_to( image_tag(attachment.image.small_thumb.url, alt: "image"), attachment.image.url, target: " ") if attachment.image? %>
-		      </div>
-          <div class="col-md-6">
-            <%= link_to 'Show', attachment, class: 'btn btn-success' %>
-            <%= link_to 'Edit', edit_attachment_path(attachment), class: 'btn btn-info' %> 
-            <%= link_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-          </div>
-	      
-    <% end %>
-  </div>
 </div>
-</P>
+<hr>
+<div class="row">
+  <div class="col-md-6">
+    <h2> Your Attachments </h2>
+    <hr>
+
+    <div class="row text-center">
+      <div class="col-md-2">
+        <Strong> Title </Strong>
+      </div>
+      <div class="col-md-2">
+        <Strong> Amount </Strong>
+      </div>
+      <div class="col-md-3">
+        <Strong> Image </Strong>
+      </div>
+    </div>
+    <%= render current_user.attachments %>
+
+  </div>
+
+  <div class="col-md-6">
+    <div class=" border border-dark p-4 nested-form">
+      <h2> Add New Attachments </h2>
+      <hr>
+      <%= nested_form_for current_user do |f| %>
+        <%= f.fields_for :attachments, Attachment.new do |f| %>
+          <div>
+            <%= render "attachments/create_attachment", f: f %>
+            <hr>
+          </div>
+        <% end %>
+        <div>
+          <%= f.link_to_add "Add new Attachment", :attachments, class: "btn btn-info float-right" %>
+        </div>
+        <div>
+          <%= f.submit "Submit" , class: "btn btn-primary"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+</div>
+
+
+
