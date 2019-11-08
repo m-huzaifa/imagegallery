@@ -24,7 +24,6 @@ class RolesController < ApplicationController
     @role = Role.create(role_params)
     respond_to do |format|
       if @role.save
-        # TODO: Move hardcode flash message into language file
         format.html { redirect_to @role, notice: 'Role was successfully added.' }
       else
         format.html { render :new, alert: 'Role not added.' }
@@ -48,7 +47,9 @@ class RolesController < ApplicationController
     redirect_to roles_path
   end
 
-  private def role_params
+  private
+
+  def role_params
     params.require(:role).permit(:name)
   end
 end

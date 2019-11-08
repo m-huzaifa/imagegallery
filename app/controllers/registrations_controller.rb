@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class RegistrationsController < Devise::RegistrationsController
-  # method for user to update email/username without password confirmation
-
   protected
 
   def update_resource(resource, params)
@@ -11,5 +9,5 @@ class RegistrationsController < Devise::RegistrationsController
     else
       super
     end
-   end
+  end
 end

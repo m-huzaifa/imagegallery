@@ -4,6 +4,7 @@ module AttachmentsHelper
   def check_for_user_like(attachment)
     if user_signed_in?
       return true if attachment.already_liked(attachment, current_user)
+
       return false
     end
     false

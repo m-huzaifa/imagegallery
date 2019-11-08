@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       else
         format.html { redirect_to attachments_path, alert: 'Attachments could not be added.' }
         format.js
-       end
+      end
     end
   end
 

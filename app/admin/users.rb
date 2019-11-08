@@ -3,18 +3,12 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :role_ids, :username
 
-  # menu if: proc{ current_user.admin? }
-
-  # index :title => 'Awesome Title'
-
   batch_action :set_roles_to_clint, priority: 1 do |ids|
     batch_action_collection.find(ids).each do |user|
       user.add_role(:client)
     end
     redirect_to collection_path, alert: 'The user roles have been set to client.'
   end
-
-  #  batch_action :destroy, false
 
   sidebar :help, only: :index do
     ul do

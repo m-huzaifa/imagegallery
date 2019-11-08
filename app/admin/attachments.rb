@@ -14,7 +14,7 @@ ActiveAdmin.register Attachment do
   action_item :view, only: :show do
     if attachment.image?
       link_to 'view image of this attachment', attachment.image.url, target: ' '
-  end
+    end
   end
 
   filter :title
@@ -24,7 +24,7 @@ ActiveAdmin.register Attachment do
   filter :amount
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors * f.object.errors.keys
     f.inputs do
       f.input :user
       f.input :title
@@ -35,7 +35,6 @@ ActiveAdmin.register Attachment do
       f.input :amount
       f.input :created_by
       f.inputs :image
-      #   f.input :remote_image_url
     end
     f.actions
   end

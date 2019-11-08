@@ -16,7 +16,7 @@ class AttachmentsController < ApplicationController
         else
           format.html { redirect_back fallback_location: all_attachments_path, alert: 'An error preventing you from liking this attachment.' }
           format.js
-             end
+        end
       else
         @reaction = Reaction.create(user: current_user, attachment: @attachment, status: params[:status], reaction: params[:reaction])
         if @reaction.save
@@ -25,8 +25,8 @@ class AttachmentsController < ApplicationController
         else
           format.html { redirect_back fallback_location: all_attachments_path, alert: 'An error preventing you from liking this attachment.' }
           format.js
-            end
         end
+      end
     end
   end
 
@@ -40,7 +40,7 @@ class AttachmentsController < ApplicationController
         else
           format.html { redirect_back fallback_location: all_attachments_path, alert: 'An error preventing you from disliking this attachment.' }
           format.js
-             end
+        end
       else
         @reaction = Reaction.create(user: current_user, attachment: @attachment, status: params[:status], reaction: params[:reaction])
         if @reaction.save
@@ -50,8 +50,8 @@ class AttachmentsController < ApplicationController
         else
           format.html { redirect_back fallback_location: all_attachments_path, alert: 'An error preventing you from disliking this attachment.' }
           format.js
-               end
-          end
+        end
+      end
     end
   end
 
@@ -98,7 +98,7 @@ class AttachmentsController < ApplicationController
         format.html { redirect_to attachment_path(@attachment), notice: 'Attachment was successfully updated.' }
       else
         format.html { render :edit, alert: 'Attachments could not be updated.' }
-          end
+      end
     end
   end
 
@@ -109,7 +109,9 @@ class AttachmentsController < ApplicationController
     redirect_to attachments_path
   end
 
-  private def attachment_params
+  private
+
+  def attachment_params
     params.require(:attachment).permit(:title, :image_type, :description, :price, :created_by, :place, :user_id, :image_cache, :remote_image_url, :image, :images_cache, :remove_image, :amount)
   end
 end
