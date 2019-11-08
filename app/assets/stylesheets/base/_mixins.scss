@@ -1,0 +1,22 @@
+@import "colors";
+
+@mixin notice {
+  background-color: $notice-bg-color;
+  border-color: $notice-border-color;
+  color: $notice-color;
+}
+
+@mixin alert {
+  background-color: $alert-bg-color;
+  border-color: $alert-border-color;
+  color: $alert-color;
+}
+
+@mixin hover($color, $bg-color) {
+  color: $color;
+  background-color: $bg-color;
+}
+
+@mixin border($color, $width){
+  border: $width solid $color;
+}

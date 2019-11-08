@@ -1,8 +1,9 @@
 /*
  * Simple CSS stylesheet for a navigation bar and flash messages.
  */
+
 main {
-  background-color: #F2F3F4;
+  background-color: $main-color;
   padding-bottom: 80px;
   padding-top: 20px;
   padding-right: 40px;
@@ -12,7 +13,7 @@ main {
   height: 100%;
   }
 header {
-  background-color: white;
+  background-color: $header-color;
   font-family: 'icomoon';
   margin-bottom: 10px;
   margin-top: 30px;
@@ -28,19 +29,17 @@ ul.nav li {
 }
 ul.nav li a {
   padding: 10px 15px 10px;
-  color: black;
+  color: $black;
   text-decoration: none;
   align-items: center;
   &:hover {
-    color: #20c997;
-    background-color: white;
+    @include hover($header-hover-color, white);
   }
 }
 .flash_notice, .flash_alert {
   padding: 8px 35px 8px 14px;
   margin-bottom: 20px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  border: 1px solid #fbeed5;
+  @include border($flash-border-color, 1px);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -49,13 +48,9 @@ ul.nav li a {
   line-height: 20px;
 }
 .flash_notice {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  color: #468847;
+  @include notice;
 }
 .flash_alert {
-  background-color: #f2dede;
-  border-color: #eed3d7;
-  color: #b94a48;
+  @include alert;
 }
 

@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
     @attachment_amount = params[:attachment_amount].to_i
     @attachment_id = params[:attachment_id].to_i
     @attachment = Attachment.find_by_id(@attachment_id)
+  end
 
   def new
     @attachment = Attachment.find(params[:attachment])

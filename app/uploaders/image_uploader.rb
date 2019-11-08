@@ -17,8 +17,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :small_thumb, from_version: :thumb do
     process resize_to_fill: [50, 50]
   end
-
-  # method forimage validation
+  
   def content_type_whitelist
     %r{image/}
   end
