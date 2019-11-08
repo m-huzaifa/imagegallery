@@ -1,24 +1,26 @@
+# frozen_string_literal: true
+
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-   include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # version method for image processing
   version :large_thumb do
-    process resize_to_fill: [500,600]
+    process resize_to_fill: [500, 600]
   end
 
   version :thumb do
-    process resize_to_fill: [200,200]
+    process resize_to_fill: [200, 200]
   end
 
   version :small_thumb, from_version: :thumb do
-    process resize_to_fill: [50,50]
+    process resize_to_fill: [50, 50]
   end
 
   # method forimage validation
   def content_type_whitelist
-    /image\//
+    %r{image/}
   end
 
   # Choose what kind of storage to use for this uploader:

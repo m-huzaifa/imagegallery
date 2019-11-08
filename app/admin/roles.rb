@@ -1,18 +1,18 @@
-ActiveAdmin.register Role do
+# frozen_string_literal: true
 
+ActiveAdmin.register Role do
   permit_params :name
 
   actions :all, except: [:destroy]
 
   config.per_page = 20
 
-
   index do
     column :id
     column :name
     column :resource_type
     column :users
-    actions 
+    actions
   end
 
   filter :name
@@ -39,5 +39,4 @@ ActiveAdmin.register Role do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
 end
