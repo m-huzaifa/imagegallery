@@ -1,4 +1,55 @@
 
+main {
+  background-color: $main-color;
+  padding-bottom: 80px;
+  padding-top: 20px;
+  padding-right: 40px;
+  padding-left: 40px;
+  margin-left: 25px;
+  margin-right: 25px;
+  height: 100%;
+  }
+header {
+  background-color: $header-color;
+  font-family: $header-font;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-right: 40px;
+  padding-left: 40px;
+}
+ul.nav li {
+  display: inline;
+}
+ul.nav li a {
+  padding: 10px 15px 10px;
+  color: $black;
+  text-decoration: none;
+  align-items: center;
+  &:hover {
+    @include hover($header-hover-color, $white);
+  }
+}
+.flash_notice, .flash_alert {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  @include border($flash-border-color, 1px);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+.flash_notice {
+  @include notice;
+}
+.flash_alert {
+  @include alert;
+}
 
 p, ol, ul, td {
   font-size: 18px;
@@ -7,7 +58,7 @@ p, ol, ul, td {
 }
 
 pre {
-  background-color: #eee;
+  background-color: $white;
   padding: 10px;
   font-size: 11px;
 }
@@ -17,7 +68,7 @@ a {
   text-decoration: none;
 
   &:hover {
-    @include hover(white, black);
+    @include hover($white, $black);
   }
 }
 
@@ -62,7 +113,7 @@ div {
     font-size: 12px;
     margin: -7px;
     margin-bottom: 0;
-    background-color: #c00;
+    background-color: $red;
     color: #fff;
   }
 
@@ -76,25 +127,18 @@ label {
   display: block;
 }
 
-.navbar-right {
-  text-align: right;
-}
-
-
 .a-primary{
   color: $black;
 }
 
 .btn-image{
-  color: $white;
+  @include button;
   @include border($white, 2px);
   font-size: 12px;
-  padding: 8px 15px;
-  border-radius: 2px;
-
-}
-.btn-image:hover {
-  @include hover($black, $white);
+  &:hover {
+    @include hover($black, $white);
+    text-decoration: none;
+  }
 }
 
 .centered {
@@ -102,29 +146,19 @@ label {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: $white;
 }
 
 .image-text{
   position: relative;
-  text-align: center;
-  font-size: 15px;
 }
-
+    
 .back-btn {
-  color: $white;
-  padding: 7px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
+  @include button;
   background-color: $back-btn-color;
-  border-radius: 4px;
-}
-
-.back-btn:hover {
-  @include hover(white, $back-btn-color);
+  &:hover {
+    @include hover(white, $back-btn-hover);
+    text-decoration: none;
+  }
 }
 
 .nested-form{

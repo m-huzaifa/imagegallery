@@ -3,6 +3,8 @@
 ActiveAdmin.register Attachment do
   permit_params :title, :image_type, :description, :price, :created_by, :place, :image, :user_id
 
+  config.per_page = 20
+
   index do
     column :id
     column :title
@@ -24,7 +26,6 @@ ActiveAdmin.register Attachment do
   filter :amount
 
   form do |f|
-    f.semantic_errors * f.object.errors.keys
     f.inputs do
       f.input :user
       f.input :title
