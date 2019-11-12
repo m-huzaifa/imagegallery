@@ -137,7 +137,6 @@ label {
   font-size: 12px;
   &:hover {
     @include hover($black, $white);
-    text-decoration: none;
   }
 }
 
@@ -157,12 +156,13 @@ label {
   background-color: $back-btn-color;
   &:hover {
     @include hover(white, $back-btn-hover);
-    text-decoration: none;
   }
 }
 
 .nested-form{
+  @include border($black, 1px);
   background-color: $nested-form-bg-color;
+  padding: 1.5rem;
 }
 
 .like-btn{

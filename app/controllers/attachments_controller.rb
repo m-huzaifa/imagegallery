@@ -2,7 +2,7 @@
 
 class AttachmentsController < ApplicationController
   load_and_authorize_resource
-  before_filter :authenticate_user!, except: %i[all_attachments show show_gallery]
+  before_action :authenticate_user!, except: %i[all_attachments show show_gallery]
 
   def index; end
 
@@ -12,21 +12,18 @@ class AttachmentsController < ApplicationController
         @reaction = Reaction.where(user_id: current_user.id, attachment_id: @attachment.id)
         if @reaction.update(user: current_user, attachment: @attachment, status: params[:status], reaction: params[:reaction])
           format.html { redirect_back fallback_location: all_attachments_path, notice: 'you liked an attachment.' }
-          format.js
         else
           format.html { redirect_back fallback_location: all_attachments_path, alert: 'An error preventing you from liking this attachment.' }
-          format.js
         end
       else
         @reaction = Reaction.create(user: current_user, attachment: @attachment, status: params[:status], reaction: params[:reaction])
         if @reaction.save
           format.html { redirect_back fallback_location: all_attachments_path, notice: 'you liked an attachment.' }
-          format.js
         else
           format.html { redirect_back fallback_location: all_attachments_path, alert: 'An error preventing you from liking this attachment.' }
-          format.js
         end
       end
+      format.js
     end
   end
 
@@ -36,22 +33,18 @@ class AttachmentsController < ApplicationController
         @reaction = Reaction.where(user_id: current_user.id, attachment_id: @attachment.id)
         if @reaction.update(user: current_user, attachment: @attachment, status: params[:status], reaction: params[:reaction])
           format.html { redirect_back fallback_location: all_attachments_path, notice: 'you disliked an attachment.' }
-          format.js
         else
           format.html { redirect_back fallback_location: all_attachments_path, alert: 'An error preventing you from disliking this attachment.' }
-          format.js
         end
       else
         @reaction = Reaction.create(user: current_user, attachment: @attachment, status: params[:status], reaction: params[:reaction])
         if @reaction.save
-          # TODO: Move hardcode flash message into language file
           format.html { redirect_back fallback_location: all_attachments_path, notice: 'you disliked an attachment.' }
-          format.js
         else
           format.html { redirect_back fallback_location: all_attachments_path, alert: 'An error preventing you from disliking this attachment.' }
-          format.js
         end
       end
+      format.js
     end
   end
 
@@ -82,7 +75,6 @@ class AttachmentsController < ApplicationController
     @attachment = current_user.attachments.create(attachment_params)
     respond_to do |format|
       if @attachment.save
-        # TODO: Move hardcode flash message into language file
         format.html { redirect_to attachment_path(@attachment), notice: 'Attachment was successfully added.' }
       else
         format.html { render :new, alert: 'Attachments could not be added.' }

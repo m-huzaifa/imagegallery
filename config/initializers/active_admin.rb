@@ -5,7 +5,6 @@ ActiveAdmin.setup do |config|
   #
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
-  #
 
   # add field to add another resource
   config.create_another = true

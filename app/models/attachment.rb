@@ -11,15 +11,14 @@ class Attachment < ApplicationRecord
   validates :image_type, presence: true
   validates :place, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
+  validates :amount, presence: true, numericality: { only_integer: true }
   validates :created_by, presence: true
   validates :image, presence: true, file_size: { less_than: 1.megabyte }
 
   def update_attachment_after_order(amount)
-    if update(amount: amount)
-      puts 'success'
-    else
-      puts 'failed to update amount'
-    end
+    return true if update(amount: amount)
+
+    false
   end
 
   def already_liked(attachment, current_user)

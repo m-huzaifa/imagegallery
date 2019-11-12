@@ -1,15 +1,19 @@
 <div class="container">
-	<h3>Profile</h3>
-	<p>
+	<div clss="row">
+		<h3>Profile</h3>
+		<%= link_to 'edit profile', edit_user_registration_path, class: "btn btn-info text-right" %>
+	</div>
+	<hr>
+	<div>
 		<strong> Email: </strong>
-		<%= @user.email if @user.email %>
-	</p>
-	<p>
+		<%= current_user.email if current_user.email %>
+	</div>
+	<div>
 		<strong> User Name: </strong>
-		<%= @user.username %>
-	</p>
+		<%= current_user.username %>
+	</div>
+	<hr>
 	<div>
 		<%= link_to 'Back', url_for(:back), class: 'back-btn' %>
-		<%= link_to 'edit profile', edit_user_registration_path, class: "btn btn-info" %>
 	</div>
 </div>

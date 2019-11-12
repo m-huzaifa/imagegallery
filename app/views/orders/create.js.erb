@@ -1,0 +1,11 @@
+$("#error-section span").addClass("hidden");
+<% if @amount.zero? %>
+  $("#error-section .js-error").removeClass("hidden");
+  $("#error-section .js-error").text("Add some amount");
+<% elsif @attachment_amount < @amount %>
+  $("#error-section .js-warning").removeClass("hidden");
+  $("#error-section .js-warning").text("max available amount for this attachment: <%= @attachment_amount %> ");
+<% else %>
+  $("#error-section .js-success").removeClass("hidden");
+  $("#error-section .js-success").text("successfully ordered.");
+<% end %>

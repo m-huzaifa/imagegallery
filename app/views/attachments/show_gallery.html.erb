@@ -11,14 +11,14 @@
   <hr>
 <div class="row">
 	<% @attachments.each do |attachment| %>
-        <div class="m-1">
-        	<div class="image-text">
+  	<div class="m-1">
+      <div class="image-text">
 				<%= image_tag(attachment.image.thumb.url, alt: "image") %>
 				<div class="centered">
 					<%= link_to "Show" , attachment, class: "btn-image", remote: true %>	
 				</div>
 			</div>
-	    </div>  
-    <% end %>
+	  </div>  
+  <% end %>
 </div>
 

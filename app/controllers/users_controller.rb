@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
+# controller for user actions
+
 class UsersController < ApplicationController
   load_and_authorize_resource
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
 
   def index
     @users = User.joins(:roles)
   end
 
-  def show
-    @user = current_user
-  end
+  def show; end
 
   def new_gallery
     @user = current_user
@@ -21,16 +22,13 @@ class UsersController < ApplicationController
   end
 
   def create_gallery
-    @user = current_user
     respond_to do |format|
-      if @user.update(user_params)
-        # TODO: Move hardcode flash message into language file
+      if current_user.update(user_params)
         format.html { redirect_to attachments_path, notice: 'Attachments was successfully updated.' }
-        format.js
       else
         format.html { redirect_to attachments_path, alert: 'Attachments could not be added.' }
-        format.js
       end
+      format.js
     end
   end
 
