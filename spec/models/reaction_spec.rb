@@ -3,11 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Reaction, type: :model do
-  before (:each) do
-    @user = FactoryBot.build(:user)
-    @attachment = FactoryBot.build(:attachment)
-    @reaction = Reaction.create(status: 1, user: @user, attachment: @attachment)
-  end
+#  before (:each) do
+#    @user = FactoryBot.build(:user)
+#    @attachment = FactoryBot.build(:attachment)
+#    @reaction = Reaction.create(status: 1, user: @user, attachment: @attachment)
+#  end
+  subject { create(:reaction)   }
 
   context 'fields' do
     it 'has a status field' do
@@ -44,7 +45,7 @@ RSpec.describe Reaction, type: :model do
 
   context do
     it 'is valid with valid attributes' do
-      expect(@reaction).to be_valid
+      expect(subject).to be_valid
     end
   end
 end

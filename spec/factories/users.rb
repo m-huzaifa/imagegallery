@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :user do
-    username { 'testing' }
-    email { 'testing@gmail.com' }
-    password { 'testpassword' }
+    username { FFaker::Name.name }
+    email { FFaker::Internet.unique.email }
+    password { FFaker::Internet.password }
   end
 end

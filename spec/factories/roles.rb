@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :role do
-    name { 'test role' }
+    name { FFaker::Name.name }
   end
 end
