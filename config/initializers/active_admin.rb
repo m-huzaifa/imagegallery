@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.setup do |config|
   # == Site Title
   #
@@ -5,15 +7,13 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
 
-
   # add field to add another resource
   config.create_another = true
 
   # adapter for authorization of admin users
   config.authorization_adapter = ActiveAdmin::CanCanAdapter
 
-
-  config.site_title = "Image Gallery"
+  config.site_title = 'Image Gallery'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -167,7 +167,7 @@ ActiveAdmin.setup do |config|
   # You can exclude possibly sensitive model attributes from being displayed,
   # added to forms, or exported by default by ActiveAdmin
   #
-  config.filter_attributes = [:encrypted_password, :password, :password_confirmation]
+  config.filter_attributes = %i[encrypted_password password password_confirmation]
 
   # == Localize Date/Time Format
   #
@@ -234,20 +234,18 @@ ActiveAdmin.setup do |config|
   # Force the use of quotes
   # config.csv_options = { force_quotes: true }
 
-
-
   # == Menu System
   #
   # You can add a navigation menu to be used in your application, or configure a provided menu
   #
   # To change the default utility navigation to show a link to your website & a logout btn
   #
-     config.namespace :admin do |admin|
-       admin.build_menu :utility_navigation do |menu|
-         menu.add label: "Home", url: "/", priority: 0
-         admin.add_logout_button_to_menu menu
-       end
-     end
+  config.namespace :admin do |admin|
+    admin.build_menu :utility_navigation do |menu|
+      menu.add label: 'Home', url: '/', priority: 0
+      admin.add_logout_button_to_menu menu
+    end
+  end
   #
   # If you wanted to add a static menu item to the default menu provided:
   #

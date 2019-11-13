@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Attachment do
-
   permit_params :title, :image_type, :description, :price, :created_by, :place, :image, :user_id
-  
 
-
+  config.per_page = 20
 
   index do
     column :id
@@ -13,9 +13,11 @@ ActiveAdmin.register Attachment do
     actions
   end
 
-action_item :view, only: :show do
-  link_to 'view image of this attachment', attachment.image.url, target: " " if attachment.image?
-end
+  action_item :view, only: :show do
+    if attachment.image?
+      link_to 'view image of this attachment', attachment.image.url, target: ' '
+    end
+  end
 
   filter :title
   filter :image_type
@@ -23,9 +25,7 @@ end
   filter :place
   filter :amount
 
-
   form do |f|
-    f.semantic_errors *f.object.errors.keys
     f.inputs do
       f.input :user
       f.input :title
@@ -36,7 +36,6 @@ end
       f.input :amount
       f.input :created_by
       f.inputs :image
-   #   f.input :remote_image_url
     end
     f.actions
   end
@@ -55,5 +54,4 @@ end
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
 end

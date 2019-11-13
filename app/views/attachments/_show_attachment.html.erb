@@ -12,36 +12,27 @@
           <div class="centered">
             <%= link_to "Show image" , @attachment.image.url, target: "_blank", class: "btn-image" %>
           </div>
-          <div id="reaction-count">
+          <div id="js-reaction-count">
             <%= render 'reaction-count' %>
           </div>
         </div>      
       <% end %>
       <hr>
       <div class="row">
-        <% if user_signed_in? %>
-          <% if @attachment.already_liked(@attachment, current_user) %>
-            <div id="like-section" class="col-md-4 hidden">
+        <% if check_for_user_like(@attachment) %>
+            <div id="js-like-section" class="col-md-4 hidden">
               <%= link_to 'like', like_attachment_path(@attachment, status: 'like', reaction: true), remote: true, method: 'post', class: 'btn btn-info' %>
             </div>
-            <div id="dislike-section" class="col-md-4">
+            <div id="js-dislike-section" class="col-md-4">
               <%= link_to 'dislike', dislike_attachment_path(@attachment, status: 'dislike', reaction: true), remote: true, method: 'post', class: 'btn btn-info' %>
             </div>
-          <% else %>
-            <div id="like-section" class="col-md-4">
-              <%= link_to 'like', like_attachment_path(@attachment, status: 'like', reaction: true), remote: true, method: 'post', class: 'btn btn-info' %>
-            </div>
-            <div id="dislike-section" class="col-md-4 hidden">
-              <%= link_to 'dislike', dislike_attachment_path(@attachment, status: 'dislike', reaction: true), remote: true, method: 'post', class: 'btn btn-info' %>
-            </div>
-          <% end %>
         <% else %>
-          <div id="like-section" class="col-md-4">
-            <%= link_to 'like', like_attachment_path(@attachment, status: 'like', reaction: true), remote: true, method: 'post', class: 'btn btn-info' %>
-          </div>
-          <div id="dislike-section" class="col-md-4">
-            <%= link_to 'dislike', dislike_attachment_path(@attachment, status: 'dislike', reaction: true), remote: true, method: 'post', class: 'btn btn-info' %>
-          </div>
+            <div id="js-like-section" class="col-md-4">
+              <%= link_to 'like', like_attachment_path(@attachment, status: 'like', reaction: true), remote: true, method: 'post', class: 'btn btn-info' %>
+            </div>
+            <div id="js-dislike-section" class="col-md-4 hidden">
+              <%= link_to 'dislike', dislike_attachment_path(@attachment, status: 'dislike', reaction: true), remote: true, method: 'post', class: 'btn btn-info' %>
+            </div>
         <% end %>
       </div>
       <hr>
