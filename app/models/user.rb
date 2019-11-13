@@ -5,6 +5,8 @@ class User < ApplicationRecord
   after_create :assign_default_role
   rolify
 
+  validates :username, presence: true
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

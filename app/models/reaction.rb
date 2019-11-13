@@ -6,7 +6,7 @@ class Reaction < ApplicationRecord
 
   enum status: %i[dislike like]
 
-  validates :reaction, presence: true
+  validates :status, presence: true
   validates :user_id, uniqueness: { scope: :attachment_id }
 
   scope :likes, -> { where(status: 1) }
