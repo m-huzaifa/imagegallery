@@ -1,23 +1,22 @@
 
-<div>
-  <div class="row mb-1">
-    <% @users.each do |user| %>
-      <% if user.attachments.any? %>
-        <div class="col-md-4 text-center mb-2">
-          <div class="image-text">
-            <%= image_tag(show_gallery_image(user)) %>
-            <div class="centered">
-              <strong>User Name: </strong>
-              <%= user.username %>
-              <br>
-              <br>
-              <%= link_to "Show Gallery" , gallery_path(user.attachments.ids), class: "btn-image" %>
-            </div>
+
+<div class="row">
+  <% @users.each do |user| %>
+    <% if user.attachments.any? %>
+      <div class="col-md-4 text-center mb-2">
+        <div class="image-text">
+          <%= image_tag(show_gallery_image(user)) %>
+          <div class="centered">
+            <strong>User Name: </strong>
+            <%= user.username %>
+            <hr>
+            <%= link_to "Show Gallery" , gallery_path(user.attachments.ids), class: "btn-image" %>
           </div>
         </div>
-      <% end %>   
-    <% end %>
-  </div>
+      </div>
+    <% end %>   
+  <% end %>
 </div>
+
 
 

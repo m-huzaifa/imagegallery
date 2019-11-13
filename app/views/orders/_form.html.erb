@@ -1,13 +1,16 @@
+<hr>
+<div id="error-section">
+  <span class="js-error alert alert-danger hidden"></span>
+  <span class="js-warning alert alert-warning hidden"></span>
+  <span class="js-success alert alert-success hidden"></span>
+</div>
+
 <div class="container">
 	<h1 class="text-center"> Order form </h1>
 	<hr>
 	<div class="row">
-		<% if @attachment.amount > 0 %>
-			<div class="col-md-3">
-				<%= link_to (image_tag @attachment.image.thumb.url), @attachment.image.url %>
-			</div>
 			<div class="col-md-9">
-				<%= form_for :orders, url: '/orders' do |f| %>
+				<%= form_for :orders, url: '/orders', remote: true do |f| %>
 					<div class="form-group">
 						<%= f.label "Name"%>
 						<%= f.text_field :name, class: "form-control" %>
@@ -24,13 +27,6 @@
 						<%= hidden_field_tag "attachment_id", @attachment.id %>
 					</div>
 				<% end %>
-			</div>	
-		<% else %>
-			<div class="alert alert-warning"> sorry, out of stock, come back later </div>
-		<% end %>
-	</div>
-	<hr>
-	<div class="text-center">
-		<%= link_to 'back', url_for(:back), class: "back-btn" %>
+			</div>
 	</div>
 </div>

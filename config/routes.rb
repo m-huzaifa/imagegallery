@@ -27,6 +27,5 @@ Rails.application.routes.draw do
   get '/:id/show_gallery', to: 'attachments#show_gallery', as: 'gallery'
   resources :roles
   resources :orders
-  get '/orders/confirm_order', to: 'orders#confirm_order'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

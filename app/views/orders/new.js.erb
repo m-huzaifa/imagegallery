@@ -1,0 +1,7 @@
+
+<% if !user_signed_in? %>
+  $("#error-section .js-error").removeClass("hidden");
+  $("#error-section .js-error").text("Add some amount");
+<% else %>
+  $("#js-order-form").html("<%= j render 'form' %>");
+<% end %>

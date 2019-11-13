@@ -1,0 +1,6 @@
+<% if current_user.errors.any? %>
+  $("#error-span").text("ERROR(S): <%= j current_user.errors.full_messages.join('; ') %>");
+  $("#error-span").addClass("alert alert-danger");
+<% else %>
+  $("#user-attachments").(" <%= j render current_user.attachments %> ")
+<% end %>

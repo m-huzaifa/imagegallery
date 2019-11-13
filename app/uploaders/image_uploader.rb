@@ -5,7 +5,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  # version method for image processing
+  # version methods for image processing
   version :large_thumb do
     process resize_to_fill: [500, 600]
   end
@@ -17,7 +17,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :small_thumb, from_version: :thumb do
     process resize_to_fill: [50, 50]
   end
-  
+
   def content_type_whitelist
     %r{image/}
   end

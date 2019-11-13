@@ -10,7 +10,7 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6" id="user-attachments">
     <h2 class="text-center"> Your Attachments </h2>
     <hr>
     <div class="row text-center">
@@ -27,10 +27,12 @@
     <%= render current_user.attachments %>
   </div>
   <div class="col-md-6">
-    <div class=" border border-dark p-4 nested-form">
+  <div id="error-span">
+  </div>
+    <div class="nested-form">
       <h2 class="text-center"> Add New Attachments </h2>
       <hr>
-      <%= nested_form_for current_user do |f| %>
+      <%= nested_form_for current_user, remote: true do |f| %>
         <%= f.fields_for :attachments, Attachment.new do |f| %>
           <div>
             <%= render "attachments/create_attachment", f: f %>
