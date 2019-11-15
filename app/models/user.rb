@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   attr_accessor :current_password
-  after_create :assign_default_role
+
   rolify
 
   validates :username, presence: true
@@ -14,6 +14,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :attachments
 
   has_many :reactions
+
+  after_create :assign_default_role
 
   def admin?
     has_role?(:admin)

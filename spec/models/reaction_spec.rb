@@ -3,12 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Reaction, type: :model do
-#  before (:each) do
-#    @user = FactoryBot.build(:user)
-#    @attachment = FactoryBot.build(:attachment)
-#    @reaction = Reaction.create(status: 1, user: @user, attachment: @attachment)
-#  end
-  subject { create(:reaction)   }
+  subject { create(:reaction) }
 
   context 'fields' do
     it 'has a status field' do
@@ -23,29 +18,29 @@ RSpec.describe Reaction, type: :model do
   end
 
   context 'associations' do
-    it 'should belong to user' do
+    it 'belong to user' do
       is_expected.to belong_to(:user)
     end
-    it 'should belong to attachment' do
+    it 'belong to attachment' do
       is_expected.to belong_to(:attachment)
     end
   end
 
   context 'validations' do
-    it 'status should be present' do
+    it 'status be present' do
       is_expected.to validate_presence_of(:status)
     end
-    it 'should has enum for status' do
+    it 'has enum for status' do
       is_expected.to define_enum_for(:status)
     end
-    it 'user should be unique' do
+    it 'unique user scoped with attachment' do
       is_expected.to validate_uniqueness_of(:user_id).scoped_to(:attachment_id)
     end
   end
 
-  context do
-    it 'is valid with valid attributes' do
-      expect(subject).to be_valid
+  context 'with valid params' do
+    it 'is valid' do
+      is_expected.to be_valid
     end
   end
 end

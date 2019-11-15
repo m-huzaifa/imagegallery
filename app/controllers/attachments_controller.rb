@@ -54,9 +54,8 @@ class AttachmentsController < ApplicationController
   end
 
   def show_gallery
-    @user = current_user
-    @user_id = Attachment.select(:user_id).where(id: params[:id])
-    @attachments = Attachment.where(user_id: @user_id)
+    user_id = Attachment.select(:user_id).where(id: params[:id])
+    @attachments = Attachment.where(user_id: user_id)
   end
 
   def show
@@ -86,7 +85,6 @@ class AttachmentsController < ApplicationController
     @attachment = Attachment.find(params[:id])
     respond_to do |format|
       if @attachment.update(attachment_params)
-        # TODO: Move hardcode flash message into language file
         format.html { redirect_to attachment_path(@attachment), notice: 'Attachment was successfully updated.' }
       else
         format.html { render :edit, alert: 'Attachments could not be updated.' }

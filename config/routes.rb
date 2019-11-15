@@ -17,12 +17,15 @@ Rails.application.routes.draw do
     match '', to: 'users#create_gallery', via: :patch
   end
 
+  resources :attachments
+
   resources :attachments do
     member do
       post 'like'
       post 'dislike'
     end
   end
+  
   get 'all_attachments', to: 'attachments#all_attachments'
   get '/:id/show_gallery', to: 'attachments#show_gallery', as: 'gallery'
   resources :roles
