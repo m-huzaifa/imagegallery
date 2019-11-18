@@ -49,8 +49,8 @@ describe UsersController, type: :controller do
       end
 
       it 'render #show view' do
-      #  get :show, params: { id: user.id }
-      #  expect(response).to render_template(:show)
+        get :show, params: { id: controller.current_user.id }
+        expect(response).to render_template(:show)
       end
     end
   end

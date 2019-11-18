@@ -4,12 +4,8 @@ require 'rails_helper'
 
 describe AttachmentsController, type: :controller do
   let!(:attachment) { create(:attachment) }
-  let(:valid_attributes) {
-    attributes_for :attachment
-  }
-  let(:invalid_attributes) {
-    { title: '' }
-  }
+  let(:valid_attributes) { attributes_for :attachment }
+  let(:invalid_attributes) { { title: '' } }
 
   context 'with admin user signed in' do
     before do
@@ -83,7 +79,7 @@ describe AttachmentsController, type: :controller do
       end
     end
 
-    describe 'PUT #edit' do
+    describe 'PUT #update' do
       context 'with valid params' do
         subject { put :update, params: { id: attachment.id, attachment: valid_attributes } }
 
@@ -115,11 +111,8 @@ describe AttachmentsController, type: :controller do
 
     describe 'DELETE #Destroy' do
       it 'deleted the attachment' do
-        #    user = create(:user)
-        #    user.attachments << attachment
-        #    byebug
-        #    attach = user.attachments
-        #    expect{delete :destroy, params: { id: attachment.id, user_id: user.id }}.to change(Attachment, :count).by(-1)
+        attachment = create(:attachment, user: subject.current_user)
+        expect { delete :destroy, params: { id: attachment.id } }.to change(Attachment, :count).by(-1)
       end
     end
 
@@ -129,27 +122,27 @@ describe AttachmentsController, type: :controller do
       context 'POST #like' do
         it 'create new like for attachment' do
           reaction = Reaction.create(user: user, attachment: attachment, status: 1)
-          expect(reaction.status).to eq("like")
+          expect(reaction.status).to eq('like')
         end
         it 'update disliked attachment to like' do
           reaction = Reaction.create(user: user, attachment: attachment, status: 0)
           reaction.update(user: user, attachment: attachment, status: 1)
           reaction.reload
-          expect(reaction.status).to eq("like")
+          expect(reaction.status).to eq('like')
         end
       end
 
       context 'POST #dislike' do
         it 'creates dislike for  attachment' do
           reaction = reaction = Reaction.create(user: user, attachment: attachment, status: 0)
-          expect(reaction.status).to eq("dislike")
+          expect(reaction.status).to eq('dislike')
         end
       end
       it 'update liked attachment to dislike' do
         reaction = Reaction.create(user: user, attachment: attachment, status: 1)
         reaction.update(user: user, attachment: attachment, status: 0)
         reaction.reload
-        expect(reaction.status).to eq("dislike")
+        expect(reaction.status).to eq('dislike')
       end
     end
   end
@@ -159,6 +152,7 @@ describe AttachmentsController, type: :controller do
       client = create(:user)
       sign_in client
     end
+
     describe 'GET #show' do
       it 'assign the requested attachment' do
         get :show, params: { id: attachment.id }
@@ -225,33 +219,40 @@ describe AttachmentsController, type: :controller do
       end
     end
 
-    describe 'PUT #edit' do
+    describe 'PUT #update' do
       context 'with valid params' do
-        subject { put :update, params: { id: attachment.id, attachment: valid_attributes } }
-
         it 'located the requested @attachment' do
-          subject
+          put :update, params: { id: attachment.id, attachment: valid_attributes }
           expect(assigns(:attachment)).to eq(attachment)
         end
         it "changes @attachment's attributes" do
-    #      subject
-    #      attachment.reload
-    #      expect(attachment.title).to eq(valid_attributes[:title])
+          attachment = create(:attachment, user: controller.current_user)
+          put :update, params: { id: attachment.id, attachment: valid_attributes }
+          attachment.reload
+          expect(attachment.title).to eq(valid_attributes[:title])
         end
         it 'redirects to the updated attachment' do
-    #      expect(subject).to redirect_to(@attachment)
+          attachment = create(:attachment, user: controller.current_user)
+          expect(put(:update, params: { id: attachment.id, attachment: valid_attributes })).to redirect_to(attachment)
         end
       end
       context 'with invalid params' do
-        subject { put :update, params: { id: attachment.id, attachment: invalid_attributes } }
         it 're-renders the edit method' do
-    #      expect(subject).to render_template :edit
+          attachment = create(:attachment, user: controller.current_user)
+          expect(put(:update, params: { id: attachment.id, attachment: invalid_attributes })).to render_template :edit
         end
         it "does not change attachment's attributes" do
-          subject
+          put :update, params: { id: attachment.id, attachment: invalid_attributes }
           attachment.reload
           expect(attachment.title).not_to eq(invalid_attributes[:title])
         end
+      end
+    end
+
+    describe 'DELETE #Destroy' do
+      it 'deleted the attachment' do
+        attachment = create(:attachment, user: subject.current_user)
+        expect { delete :destroy, params: { id: attachment.id } }.to change(Attachment, :count).by(-1)
       end
     end
   end
@@ -286,8 +287,5 @@ describe AttachmentsController, type: :controller do
         expect(response).to render_template(:show_gallery)
       end
     end
-
-    
-    
   end
 end

@@ -57,7 +57,7 @@ describe RolesController, type: :controller do
       subject { post :create, params: { role: invalid_attributes } }
 
       it 'not create new role' do
-        subject 
+        subject
         expect { response }.not_to change { Role.count }
       end
       it 'not create new role' do
@@ -67,10 +67,10 @@ describe RolesController, type: :controller do
     end
   end
 
-  describe 'PUT #edit' do
+  describe 'PUT #update' do
     context 'with valid params' do
       subject { put :update, params: { id: role.id, role: valid_attributes } }
-      
+
       it 'update the role' do
         subject
         expect(assigns(:role)).to eq(role)
@@ -88,7 +88,7 @@ describe RolesController, type: :controller do
 
     context 'with invalid params' do
       subject { put :update, params: { id: role.id, role: invalid_attributes } }
-      
+
       it 're-renders the edit method' do
         subject
         expect(response).to render_template :edit
@@ -102,10 +102,10 @@ describe RolesController, type: :controller do
   end
 
   describe 'DELETE #Destroy' do
-    subject{ delete :destroy, params: { id: role.id } }
-    
+    subject { delete :destroy, params: { id: role.id } }
+
     it 'delete the role' do
-      expect{subject}.to change(Role, :count).by(-1)
+      expect { subject }.to change(Role, :count).by(-1)
     end
     it 'redirects to roles #index' do
       subject

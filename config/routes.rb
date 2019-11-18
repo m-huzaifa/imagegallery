@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       post 'dislike'
     end
   end
-  
+
   get 'all_attachments', to: 'attachments#all_attachments'
   get '/:id/show_gallery', to: 'attachments#show_gallery', as: 'gallery'
   resources :roles
