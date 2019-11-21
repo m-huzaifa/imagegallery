@@ -88,7 +88,7 @@ describe Attachment, type: :model do
     let!(:attachment) { create(:attachment) }
 
     context 'already_liked' do
-      subject { already_liked = attachment.already_liked(attachment, user) }
+      subject { attachment.already_liked(attachment, user) }
       it 'return true when attachment is liked' do
         reaction = Reaction.create(user: user, attachment: attachment, status: 1)
         is_expected.to be true
@@ -100,7 +100,7 @@ describe Attachment, type: :model do
     end
 
     context 'already_disliked' do
-      subject { already_disliked = attachment.already_disliked(attachment, user) }
+      subject { attachment.already_disliked(attachment, user) }
       it 'return true when attachment is disliked' do
         reaction = Reaction.create(user: user, attachment: attachment, status: 0)
         is_expected.to be true
@@ -112,7 +112,7 @@ describe Attachment, type: :model do
     end
 
     context 'already_reacted' do
-      subject { already_reacted = attachment.already_reacted(attachment, user) }
+      subject { attachment.already_reacted(attachment, user) }
       it 'return true when attachment is reacted' do
         reaction = Reaction.create(user: user, attachment: attachment, status: 1)
         is_expected.to be true

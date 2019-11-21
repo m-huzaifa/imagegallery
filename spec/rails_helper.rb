@@ -12,6 +12,7 @@ if Rails.env.production?
 end
 require 'rspec/rails'
 require 'devise'
+require 'capybara/rails'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -45,6 +46,8 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   config.include Devise::Test::ControllerHelpers, type: :controller
+
+  config.include Warden::Test::Helpers
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

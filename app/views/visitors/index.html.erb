@@ -1,5 +1,8 @@
 
-
+<div class="text-center">
+  <%= link_to 'Create Gallery', attachments_path, class: 'btn btn-primary' %>
+</div>
+<hr>
 <div class="row">
   <% @users.each do |user| %>
     <% if user.attachments.any? %>

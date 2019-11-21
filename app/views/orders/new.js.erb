@@ -1,7 +1,6 @@
 
 <% if !user_signed_in? %>
-  $("#error-section .js-error").removeClass("hidden");
-  $("#error-section .js-error").text("Add some amount");
+  $("#js-order-form").text("you need to sign in before order");
 <% else %>
   $("#js-order-form").html("<%= j render 'form' %>");
 <% end %>

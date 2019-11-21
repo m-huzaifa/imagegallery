@@ -134,7 +134,7 @@ describe AttachmentsController, type: :controller do
 
       context 'POST #dislike' do
         it 'creates dislike for  attachment' do
-          reaction = reaction = Reaction.create(user: user, attachment: attachment, status: 0)
+          reaction = Reaction.create(user: user, attachment: attachment, status: 0)
           expect(reaction.status).to eq('dislike')
         end
       end
