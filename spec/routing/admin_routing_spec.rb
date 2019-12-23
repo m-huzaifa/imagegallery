@@ -54,9 +54,6 @@ RSpec.describe 'Admin Section', type: :routing do
     it 'routes GET /admin/roles/new to admin/roles#new' do
       expect(get('/admin/roles/new')).to route_to('admin/roles#new')
     end
-    it 'routes GET /admin/roles/:id/edit to admin/roles#edit' do
-      expect(get('/admin/roles/:id/edit')).to route_to('admin/roles#edit', id: ':id')
-    end
     it 'routes GET /admin/roles/:id to admin/roles#show' do
       expect(get('/admin/roles/:id')).to route_to('admin/roles#show', id: ':id')
     end

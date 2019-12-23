@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-sm-3">
       <% if @attachment.image %>
-      <div class="image-text">
+        <div class="image-text">
           <%= image_tag(@attachment.image.thumb.url, alt: 'Image') %>
           <div class="centered">
             <%= link_to "Show" , @attachment.image.url, target: "_blank", class: "btn-image" %>

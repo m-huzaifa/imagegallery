@@ -64,7 +64,7 @@ describe 'User Features', type: :feature do
           expect(page).to have_content 'Signed in successfully.'
         end
       end
-      it 'See navigation links after signed in ' do
+      it 'See navigation links after signed in' do
         visit '/users/sign_in'
         within('form') do
           fill_in 'Email', with: user.email

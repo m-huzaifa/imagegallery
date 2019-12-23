@@ -3,7 +3,7 @@
 ActiveAdmin.register Role do
   permit_params :name
 
-  actions :all, except: [:destroy]
+  actions :all, except: [:destroy, :edit]
 
   config.per_page = 20
 

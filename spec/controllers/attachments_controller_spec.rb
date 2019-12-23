@@ -115,36 +115,6 @@ describe AttachmentsController, type: :controller do
         expect { delete :destroy, params: { id: attachment.id } }.to change(Attachment, :count).by(-1)
       end
     end
-
-    describe 'Attachment Reaction' do
-      let!(:user) { create(:user) }
-
-      context 'POST #like' do
-        it 'create new like for attachment' do
-          reaction = Reaction.create(user: user, attachment: attachment, status: 1)
-          expect(reaction.status).to eq('like')
-        end
-        it 'update disliked attachment to like' do
-          reaction = Reaction.create(user: user, attachment: attachment, status: 0)
-          reaction.update(user: user, attachment: attachment, status: 1)
-          reaction.reload
-          expect(reaction.status).to eq('like')
-        end
-      end
-
-      context 'POST #dislike' do
-        it 'creates dislike for  attachment' do
-          reaction = Reaction.create(user: user, attachment: attachment, status: 0)
-          expect(reaction.status).to eq('dislike')
-        end
-      end
-      it 'update liked attachment to dislike' do
-        reaction = Reaction.create(user: user, attachment: attachment, status: 1)
-        reaction.update(user: user, attachment: attachment, status: 0)
-        reaction.reload
-        expect(reaction.status).to eq('dislike')
-      end
-    end
   end
 
   context 'with client user signed in' do

@@ -43,7 +43,7 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :username
       f.input :email
-      f.input :password
+      f.input :passwords
       f.input :password_confirmation
       f.input :roles, as: :check_boxes
     end
